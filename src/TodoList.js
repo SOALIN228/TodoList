@@ -1,10 +1,14 @@
 import React, {Component, Fragment} from 'react'
+import './style.css'
 
 class TodoList extends Component {
 
   // constructor 在组件创建时执行
   constructor (props) {
     super(props)
+
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleKeyUp = this.handleKeyUp.bind(this)
     // 数据写在state中
     this.state = {
       inputValue: '',
@@ -19,7 +23,7 @@ class TodoList extends Component {
   }
 
   handleKeyUp (e) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && e.target.value !== '') {
       const list = [...this.state.list, this.state.inputValue]
       this.setState({
         list,
@@ -36,23 +40,30 @@ class TodoList extends Component {
     })
   }
 
+  getListItems () {
+    return this.state.list.map((value, index) => {
+      return (
+        <li key={index} onClick={this.handleItemClick.bind(this, index)}
+            dangerouslySetInnerHTML={{__html: value}}
+        >
+        </li>
+      )
+    })
+  }
+
   render () {
     return (
       <Fragment>
-        <input value={this.state.inputValue}
-               onChange={this.handleInputChange.bind(this)}
-               onKeyUp={this.handleKeyUp.bind(this)}
+        {/*这是注释*/}
+        <label htmlFor={'myinput'}>请输入内容：</label>
+        <input className={'input'}
+               id={'myinput'}
+               value={this.state.inputValue}
+               onChange={this.handleInputChange}
+               onKeyUp={this.handleKeyUp}
         />
         <ul>
-          {
-            this.state.list.map((value, index) => {
-              return (
-                <li key={index} onClick={this.handleItemClick.bind(this, index)}>
-                  {value}
-                </li>
-              )
-            })
-          }
+          {this.getListItems()}
         </ul>
       </Fragment>
     )
