@@ -7,8 +7,8 @@ class TodoList extends Component {
     super(props)
     // 数据写在state中
     this.state = {
-      inputValue: 'hello world',
-      list: []
+      inputValue: '',
+      list: ['1', '2']
     }
   }
 
@@ -18,15 +18,41 @@ class TodoList extends Component {
     })
   }
 
+  handleKeyUp (e) {
+    if (e.keyCode === 13) {
+      const list = [...this.state.list, this.state.inputValue]
+      this.setState({
+        list,
+        inputValue: ''
+      })
+    }
+  }
+
+  handleItemClick (index) {
+    const list = [...this.state.list]
+    list.splice(index, 1)
+    this.setState({
+      list
+    })
+  }
+
   render () {
     return (
       <Fragment>
         <input value={this.state.inputValue}
                onChange={this.handleInputChange.bind(this)}
+               onKeyUp={this.handleKeyUp.bind(this)}
         />
         <ul>
-          <li>1</li>
-          <li>2</li>
+          {
+            this.state.list.map((value, index) => {
+              return (
+                <li key={index} onClick={this.handleItemClick.bind(this, index)}>
+                  {value}
+                </li>
+              )
+            })
+          }
         </ul>
       </Fragment>
     )
