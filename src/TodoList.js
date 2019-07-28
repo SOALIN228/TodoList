@@ -55,7 +55,21 @@ class TodoList extends Component {
     })
   }
 
+  static getDerivedStateFromProps () {
+    console.log('getDerivedStateFromProps')
+    return false
+  }
+
+  // componentWillMount () {
+  //   console.log('componentWillMount')
+  // }
+
+  componentDidMount () {
+    console.log('componentDidMount')
+  }
+
   render () {
+    console.log('render')
     return (
       <Fragment>
         {/*这是注释*/}
