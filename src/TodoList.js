@@ -19,26 +19,28 @@ class TodoList extends Component {
   }
 
   handleInputChange (e) {
-    this.setState({
-      inputValue: e.target.value
-    })
+    const value = e.target.value
+    this.setState(() => ({
+      inputValue: value
+    }))
   }
 
   handleKeyUp (e) {
     if (e.keyCode === 13 && e.target.value !== '') {
-      const list = [...this.state.list, this.state.inputValue]
-      this.setState({
-        list,
+      this.setState((prevState) => ({
+        list: [...prevState.list, prevState.inputValue],
         inputValue: ''
-      })
+      }))
     }
   }
 
   handleItemClick (index) {
-    const list = [...this.state.list]
-    list.splice(index, 1)
-    this.setState({
-      list
+    this.setState((prevState) => {
+      const list = [...prevState.list]
+      list.splice(index, 1)
+      return {
+        list
+      }
     })
   }
 

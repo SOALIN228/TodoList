@@ -52,6 +52,15 @@
     }, () => {
       console.log('数据更新后执行')
     })
+    // 推荐使用异步的方式操作数据
+    // 使用prevState来代替this.state,避免操作失误
+    this.setState((prevState) => {
+      const list = [...prevState.list]
+      list.splice(index, 1)
+      return {
+        list
+      }
+    })
     ```
 
 18. 生命周期函数指的是组件在某一时刻会自动执行的函数
