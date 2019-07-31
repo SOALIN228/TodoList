@@ -112,9 +112,9 @@
 
     2. componentWillReceiveProps()
 
-       在组件收到新的props之前会被调用，所以只有在子组件中才会有，**已废弃**
+       在组件收到新的props之前会被调用，所以只有在子组件中才会被调用，第一次存在父组件中不会执行，已经存在父组件中才会执行，**已废弃**
 
-    3. shouldComponentUpdate
+    3. shouldComponentUpdate()
 
        每次更新时执行，如果返回false，后面的生命周期函数都不会执行，可以在某些情况下避免重复渲染页面
 
@@ -149,4 +149,8 @@
     2. componentDidCatch(error, info)
 
        在后代组件抛出错误后被调用
+
+20. 使用charles模拟请求的返回数据，做数据mock
+
+
 

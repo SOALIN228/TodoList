@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react'
+import axios from 'axios'
 import TodoItem from './TodoItem'
 import './style.css'
 
@@ -19,7 +20,8 @@ class TodoList extends Component {
   }
 
   handleInputChange (e) {
-    const value = e.target.value
+    // const value = e.target.value
+    const value = this.input.value // 使用ref获取dom操作
     this.setState(() => ({
       inputValue: value
     }))
@@ -58,30 +60,28 @@ class TodoList extends Component {
     })
   }
 
-  static getDerivedStateFromProps () {
-    console.log('getDerivedStateFromProps')
-    return false
-  }
-
-  // componentWillMount () {
-  //   console.log('componentWillMount')
-  // }
-
   componentDidMount () {
-    console.log('componentDidMount')
+    axios.get('/api/todolist').then((res) => {
+      console.log(res.data)
+      this.setState(() => ({
+        list: [...res.data]
+      }))
+    })
   }
 
   render () {
-    console.log('render')
     return (
       <Fragment>
         {/*这是注释*/}
-        <label htmlFor={'myinput'}>请输入内容：</label>
+        <label htmlFor={'insertArea'}>请输入内容：</label>
         <input className={'input'}
-               id={'myinput'}
+               id={'insertArea'}
                value={this.state.inputValue}
                onChange={this.handleInputChange}
                onKeyUp={this.handleKeyUp}
+               ref={(input) => {
+                 this.input = input
+               }}
         />
         <ul>
           {this.getListItems()}
