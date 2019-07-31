@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 class TodoItem extends Component {
 
@@ -17,13 +18,24 @@ class TodoItem extends Component {
 
   render () {
     // 接收父组件传递的值
-    const { content, index } = this.props
+    const { content, index, test } = this.props
     return (
       <li key={index}
           onClick={this.handleItemClick}
-      >{content}</li>
+      >{test} - {content}</li>
     )
   }
+}
+
+TodoItem.propTypes = { // 类型检测
+  test: PropTypes.string.isRequired, // 必填
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // 多种类型
+  deleteItem: PropTypes.func,
+  index: PropTypes.number
+}
+
+TodoItem.defaultProps = { // 设置默认值
+  test: 'hello world'
 }
 
 export default TodoItem

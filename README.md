@@ -63,7 +63,24 @@
     })
     ```
 
-18. 生命周期函数指的是组件在某一时刻会自动执行的函数
+18. PropTypes 类型检查
+
+    ```react
+    import PropTypes from 'prop-types' // 引入
+    
+    TodoItem.propTypes = { // 类型检测
+      test: PropTypes.string.isRequired, // 必填
+      content: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // 多种类型
+      deleteItem: PropTypes.func, // 类型为方法
+      index: PropTypes.number
+    }
+    
+    TodoItem.defaultProps = { // 设置默认值
+      test: 'hello world'
+    }
+    ```
+
+19. 生命周期函数指的是组件在某一时刻会自动执行的函数
 
     **挂载**
 

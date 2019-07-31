@@ -49,8 +49,9 @@ class TodoList extends Component {
     // 父组件通过的形式向子组件传值
     return this.state.list.map((value, index) => {
       return (
-        <TodoItem content={value}
-                  key={index}
+        <TodoItem key={index}
+                  content={value}
+                  index={index}
                   deleteFunction={this.handleItemClick}
         />
       )
