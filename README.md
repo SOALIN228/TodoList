@@ -152,5 +152,50 @@
 
 20. 使用charles模拟请求的返回数据，做数据mock
 
+21. 使用react-transition-group动画库做一些动画，具体读文档
+
+    ```react
+    <CSSTransition in={this.state.show} // 控制显示
+                   timeout={1000} // 控制时间
+                   classNames={'fade'} // 名字
+                   unmountOnExit // 动画结束移除dom
+                   onEntered={(el) => {el.style.color = 'blue'}} // 控制动画的js钩子
+                   appear={true} // 页面第一次打开是否显示
+    >
+      <div>hello</div>
+    </CSSTransition>
+    ```
+
+    ```css
+    .fade-enter,
+    .fade-appear {
+        opacity: 0;
+    }
+    
+    .fade-enter-active,
+    .fade-appear-active {
+        opacity: 1;
+        transition: opacity 1s ease-in;
+    }
+    
+    .fade-enter-done {
+        opacity: 1;
+    }
+    
+    .fade-exit {
+        opacity: 1;
+    }
+    
+    .fade-exit-active {
+        opacity: 0;
+        transition: opacity 1s ease-in;
+    }
+    
+    .fade-exit-done {
+        opacity: 0;
+    }
+    ```
+
+
 
 
