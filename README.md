@@ -263,6 +263,31 @@
     <Input value={this.state.inputValue} placeholder={'todo'} style={{ width: '300px', marginRight: '10px' }}/> // 使用数据
     ```
 
+25. redux数据更新
+
+    ```react
+    // constructor
+    store.subscribe(this.handleStoreChange) // store改变时执行
+    
+    handleStoreChange () {
+    	this.setState(store.getState()) // 重新加载store中数据
+    }
+    
+    handleInputChange (e) {
+     const action = { // 创建一个action
+    		type: 'change_input_value',
+    		value: e.target.value
+    	}
+    	store.dispatch(action) // 将action传递给reducers
+    }
+    
+    // reducer.js
+    if (action.type === 'change_input_value') { // 监听action变化，进行store的更新
+    	const newState = JSON.parse(JSON.stringify(state)) // 深拷贝
+    	newState.inputValue = action.value
+    	return newState // 将数据返回给store
+    }
+    ```
 
 
 

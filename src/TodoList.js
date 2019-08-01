@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 // import axios from 'axios'
 import store from './store'
 // import TodoItem from './TodoItem'
@@ -10,15 +10,44 @@ class TodoList extends Component {
 
   constructor (props) {
     super(props)
-    this.state = store.getState()
+    this.state = store.getState() // 获取store数据
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleStoreChange = this.handleStoreChange.bind(this)
+    this.handleBtnClick = this.handleBtnClick.bind(this)
+    store.subscribe(this.handleStoreChange) // store改变时执行
+  }
+
+  handleStoreChange () {
+    this.setState(store.getState()) // 重新加载store中数据
+  }
+
+  handleInputChange (e) {
+    const action = { // 创建一个action
+      type: 'change_input_value',
+      value: e.target.value
+    }
+    store.dispatch(action) // 将action传递给reducers
+  }
+
+  handleBtnClick () {
+    const action = {
+      type: 'add_todo_item'
+    }
+    store.dispatch(action)
   }
 
   render () {
     return (
       <div style={{ marginTop: '10px', marginLeft: '10px' }}>
         <div>
-          <Input value={this.state.inputValue} placeholder={'todo'} style={{ width: '300px', marginRight: '10px' }}/>
-          <Button type="primary">提交</Button>
+          <Input value={this.state.inputValue}
+                 placeholder={'todo'}
+                 style={{ width: '300px', marginRight: '10px' }}
+                 onChange={this.handleInputChange}
+          />
+          <Button type="primary"
+                  onClick={this.handleBtnClick}
+          >提交</Button>
         </div>
         <List style={{ marginTop: 10, width: 300 }}
               bordered
@@ -31,6 +60,8 @@ class TodoList extends Component {
     )
   }
 }
+
+export default TodoList
 
 // class TodoList extends Component {
 //
@@ -119,5 +150,3 @@ class TodoList extends Component {
 //     )
 //   }
 // }
-
-export default TodoList
