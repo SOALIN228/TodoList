@@ -196,6 +196,32 @@
     }
     ```
 
+22. TransitionGroup 实现列表动画
+
+    ```react
+    <TransitionGroup>
+      {
+        this.state.list.map((item, index) => {
+          return (
+            <CSSTransition timeout={1000}
+                           classNames={'fade'}
+                           unmountOnExit
+                           onEntered={(el) => {
+                             el.style.color = 'blue'
+                           }}
+                           appear={true}
+                           key={index}
+            >
+              <div>{item}</div>
+            </CSSTransition>
+          )
+        })
+      }
+    </TransitionGroup>
+    ```
+
+
+
 
 
 
