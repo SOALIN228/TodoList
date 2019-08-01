@@ -228,6 +228,40 @@
     </TransitionGroup>
     ```
 
+24. redux
+
+    ```react
+    // 配置reducer
+    const defaultState = { // 默认数据集
+      inputValue: '123',
+      list: [1, 2]
+    }
+    
+    export default (state = defaultState, action) => { // 将默认数据注入到state
+      return state
+    }
+    
+    // 配置store
+    import {createStore} from 'redux'
+    import reducer from './reducer'
+    
+    const store = createStore(reducer) // 引入reducer
+    export default store
+    ```
+
+
+
+    ```react
+    // 使用redux
+    import store from './store' // 引入
+    
+    constructor (props) {
+      super(props)
+      this.state = store.getState() // 导入数据
+    }
+    
+    <Input value={this.state.inputValue} placeholder={'todo'} style={{ width: '300px', marginRight: '10px' }}/> // 使用数据
+    ```
 
 
 
