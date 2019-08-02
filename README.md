@@ -297,7 +297,9 @@
 
 30. 如果UI组件中不需要使用逻辑、生命周期,使用无状态组件会更高效
 
-31. 使用thunk中间件，可以将ajax移动到actionCreators中，变成异步调用，还会方便后续测试和管理
+31. 使用redux-thunk中间件，可以将ajax移动到actionCreators中，变成异步调用，还会方便后续测试和管理
+
+32. 使用redux-sage中间件，效果同上
 
 
 
