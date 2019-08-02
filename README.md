@@ -291,6 +291,8 @@
 
 27. 使用actionCreator统一管理action，方便自动换测试和维护
 
+28. reducer 可以接受state，但是不能修改state，不要写有副作用的函数
+
 
 
 
