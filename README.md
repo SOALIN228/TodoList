@@ -249,8 +249,6 @@
     export default store
     ```
 
-
-
     ```react
     // 使用redux
     import store from './store' // 引入
@@ -260,7 +258,7 @@
       this.state = store.getState() // 导入数据
     }
     
-    <Input value={this.state.inputValue} placeholder={'todo'} style={{ width: '300px', marginRight: '10px' }}/> // 使用数据
+    <Input value={this.state.inputValue} style={{ width: '300px', marginRight: '10px' }}/> // 使用数据
     ```
 
 25. redux数据更新
