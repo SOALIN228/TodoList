@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 // import axios from 'axios'
 import store from './store'
-import {CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM} from './store/actionType'
+import {getInputChangeAction, getAddItemAction, getDeleteItemAction} from './store/actionCreators'
 // import TodoItem from './TodoItem'
 import {Input, Button, List} from 'antd'
 import 'antd/dist/antd.css'
@@ -23,25 +23,17 @@ class TodoList extends Component {
   }
 
   handleInputChange (e) {
-    const action = { // 创建一个action
-      type: CHANGE_INPUT_VALUE,
-      value: e.target.value
-    }
-    store.dispatch(action) // 将action传递给reducers
+    const action = getInputChangeAction(e.target.value) // 创建一个action
+    store.dispatch(action) // 将action派发给reducers
   }
 
   handleBtnClick () {
-    const action = {
-      type: ADD_TODO_ITEM
-    }
+    const action = getAddItemAction()
     store.dispatch(action)
   }
 
   handleItemDelete (index) {
-    const action = {
-      type: DELETE_TODO_ITEM,
-      index
-    }
+    const action = getDeleteItemAction(index)
     store.dispatch(action)
   }
 
