@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {ChangeInputValue, AddItem, DeleteItem} from './store/actionType'
 
 const TodoList = (props) => {
-  const { inputValue, list, handleInputChange, handleClick } = props
+  const { inputValue, list, handleInputChange, handleClick, handleDelete } = props
 
   return (
     <div>
@@ -17,7 +18,8 @@ const TodoList = (props) => {
         {
           list.map((item, index) => {
             return (
-              <li key={index}>{item}</li>
+              <li key={index} onClick={handleDelete.bind(this, index)}
+              >{item}</li>
             )
           })
         }
@@ -37,14 +39,21 @@ const mapDispatchToProps = (dispatch) => { // 将store中dispatch和props做关�
   return {
     handleInputChange (e) {
       const action = {
-        type: 'change_input_value',
+        type: ChangeInputValue,
         value: e.target.value
       }
       dispatch(action)
     },
     handleClick () {
       const action = {
-        type: 'add_item'
+        type: AddItem
+      }
+      dispatch(action)
+    },
+    handleDelete (index) {
+      const action = {
+        type: DeleteItem,
+        index
       }
       dispatch(action)
     }
