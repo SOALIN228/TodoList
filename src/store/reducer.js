@@ -1,4 +1,4 @@
-import {ChangeInputValue, AddItem, DeleteItem} from './store/actionType'
+import {ChangeInputValue, AddItem, DeleteItem} from './actionType'
 
 const defaultState = {
   inputValue: '',
