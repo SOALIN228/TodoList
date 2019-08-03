@@ -301,6 +301,8 @@
 
 32. 使用redux-sage中间件，效果同上
 
+33. 使用react-redux中间件
+
 
 
 

@@ -1,30 +1,18 @@
-import {INIT_LIST_ACTION, CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM} from './actionType'
-
-const defaultState = { // 数据集
+const defaultState = {
   inputValue: '',
   list: []
 }
 
 export default (state = defaultState, action) => {
-  if (action.type === CHANGE_INPUT_VALUE) { // 监听action变化，进行store的更新
-    const newState = JSON.parse(JSON.stringify(state)) // 深拷贝
+  if (action.type === 'change_input_value') {
+    const newState = JSON.parse(JSON.stringify(state))
     newState.inputValue = action.value
-    return newState // 将数据返回给store
+    return newState
   }
-  if (action.type === ADD_TODO_ITEM) {
+  if (action.type === 'add_item') {
     const newState = JSON.parse(JSON.stringify(state))
     newState.list.push(newState.inputValue)
     newState.inputValue = ''
-    return newState
-  }
-  if (action.type === DELETE_TODO_ITEM) {
-    const newState = JSON.parse(JSON.stringify(state))
-    newState.list.splice(action.index, 1)
-    return newState
-  }
-  if (action.type === INIT_LIST_ACTION) {
-    const newState = JSON.parse(JSON.stringify(state))
-    newState.list = action.data
     return newState
   }
   return state
