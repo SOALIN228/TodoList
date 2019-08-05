@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class TodoItem extends Component {
@@ -6,10 +6,6 @@ class TodoItem extends Component {
   constructor (props) {
     super(props)
     this.handleItemClick = this.handleItemClick.bind(this)
-  }
-
-  shouldComponentUpdate (nextProps, nextState, nextContext) {
-    return nextProps.content !== this.props.content;
   }
 
   handleItemClick () {
@@ -21,10 +17,9 @@ class TodoItem extends Component {
 
   render () {
     // 接收父组件传递的值
-    const { content, index } = this.props
+    const { content } = this.props
     return (
-      <li key={index}
-          onClick={this.handleItemClick}
+      <li onClick={this.handleItemClick}
       >{content}</li>
     )
   }
