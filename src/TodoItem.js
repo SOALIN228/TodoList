@@ -15,6 +15,10 @@ class TodoItem extends Component {
     deleteFunction(index)
   }
 
+  shouldComponentUpdate (nextProps, nextState, nextContext) { // 性能优化，子组件数据不变时，阻止页面重新渲染
+    return nextProps.content !== this.props.content;
+  }
+
   render () {
     // 接收父组件传递的值
     const { content } = this.props

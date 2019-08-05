@@ -45,6 +45,7 @@
 17. 通过ref来操作DOM
     - 在html标签上，获取的是DOM节点 `ref={(button) => {this.buttonElem = button}}` 然后通过this.buttonElem 就可以获取DOM
     - 在组件上，获取的是js实例
+    - 操作dom要在setState的第二个方法中调用，因为setState是异步的 
 
 18. setState 是异步的
     ```javascript
@@ -120,7 +121,7 @@
 
     2. componentWillReceiveProps()
 
-       在组件收到新的props之前会被调用，所以只有在子组件中才会被调用，第一次存在父组件中不会执行，已经存在父组件中才会执行，**已废弃**
+       子组件要从父组件接收参数，只要父组件的render函数被重新执行(第二次及以上)，子组件的这个生命周期函数就会被执行，**已废弃**
 
     3. shouldComponentUpdate()
 
