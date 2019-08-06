@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import axios from 'axios'
 import TodoItem from './TodoItem'
 import './style.css'
 
@@ -44,17 +45,11 @@ class TodoList extends Component {
     })
   }
 
-  getListItems () {
-    // 父子组件的概念
-    // 父组件通过的形式向子组件传值
-    return this.state.list.map((value, index) => {
-      return (
-        <TodoItem key={index}
-                  content={value}
-                  index={index}
-                  deleteFunction={this.handleItemDelete}
-        />
-      )
+  componentDidMount () {
+    axios.get('/api/todolist').then((res) => {
+      this.setState(() => ({
+        list: [...res.data]
+      }))
     })
   }
 
@@ -77,6 +72,20 @@ class TodoList extends Component {
         </ul>
       </Fragment>
     )
+  }
+
+  getListItems () {
+    // 父子组件的概念
+    // 父组件通过的形式向子组件传值
+    return this.state.list.map((value, index) => {
+      return (
+        <TodoItem key={index}
+                  content={value}
+                  index={index}
+                  deleteFunction={this.handleItemDelete}
+        />
+      )
+    })
   }
 }
 
