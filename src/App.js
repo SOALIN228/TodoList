@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
-import './style2.css'
+import './style.css'
 
 class App extends Component {
   constructor (props) {
