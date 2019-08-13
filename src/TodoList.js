@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {changeInputValueAction, addItemAction, deleteItemAction} from './store/actionCreator'
+import { connect } from 'react-redux'
+import { changeInputValueAction, addItemAction, deleteItemAction } from './store/actionCreator'
 
 const TodoList = (props) => {
   const { inputValue, list, handleInputChange, handleClick, handleDelete } = props
