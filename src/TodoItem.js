@@ -16,7 +16,7 @@ class TodoItem extends Component {
   }
 
   shouldComponentUpdate (nextProps, nextState, nextContext) { // 性能优化，子组件数据不变时，阻止页面重新渲染
-    return nextProps.content !== this.props.content;
+    return nextProps.content !== this.props.content
   }
 
   render () {
