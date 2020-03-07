@@ -57,9 +57,9 @@ class TodoList extends Component {
     return (
       <Fragment>
         {/*这是注释*/}
-        <label htmlFor={'insertArea'}>请输入内容：</label>
-        <input className={'input'}
-               id={'insertArea'}
+        <label htmlFor='insertArea'>请输入内容：</label>
+        <input className='input'
+               id='insertArea'
                value={this.state.inputValue}
                onChange={this.handleInputChange}
                ref={(input) => {

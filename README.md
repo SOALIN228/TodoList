@@ -40,7 +40,7 @@
     - 父组件将数据和方法传递给子组件，子组件通过this.props接收父组件传递的值
     - 父组件传递方法中的this，应该指向父组件，因为数据的具体操作应该由父组件控制，避免在子组件中修改父组件的值
 
-16. render函数在创建时会执行一次，每次state或props改变时，再次执行render进行页面渲染，从而实现数据驱动页面
+16. render函数在创建时会执行一次，每次state或props改变时，render函数会重新执行
 
 17. 通过ref来操作DOM
     - 在html标签上，获取的是DOM节点 `ref={(button) => {this.buttonElem = button}}` 然后通过this.buttonElem 就可以获取DOM
