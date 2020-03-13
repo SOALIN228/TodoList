@@ -18,7 +18,7 @@ const TodoList = (props) => {
         {
           list.map((item, index) => {
             return (
-              <li key={index} onClick={handleDelete.bind(this, index)}
+              <li key={index} onClick={() => handleDelete(index)}
               >{item}</li>
             )
           })
